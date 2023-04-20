@@ -1,6 +1,6 @@
 name: Vercel Preview Deployment
 env:
-  VERCEL_PROJECT_ID: prj_TDVnVIcvMkqKY3Kwl7qD2sjk8xkB
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 on:
   push:
     branches-ignore:
@@ -13,8 +13,8 @@ jobs:
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
       - name: Pull Vercel Environment Information
-        run: vercel pull --yes --environment=preview --token=48PtwIo6wwKxkzqmJ6cbasam
+        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
       - name: Build Project Artifacts
         run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
       - name: Deploy Project Artifacts to Vercel
-        run: vercel deploy --prebuilt --token=48PtwIo6wwKxkzqmJ6cbasam
+        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
